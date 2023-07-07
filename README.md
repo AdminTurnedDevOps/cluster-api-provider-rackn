@@ -1,1 +1,1 @@
-# RackN-Machine-Provider
+# cluster-api-provider-rackn
