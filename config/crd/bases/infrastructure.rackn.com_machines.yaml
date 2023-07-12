@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: machines.infrastructure.cluster.x-k8s.io
+  name: machines.infrastructure.rackn.com
 spec:
-  group: infrastructure.cluster.x-k8s.io
+  group: infrastructure.rackn.com
   names:
     kind: Machine
     listKind: MachineList

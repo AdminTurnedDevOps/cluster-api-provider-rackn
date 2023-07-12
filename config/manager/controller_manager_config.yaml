@@ -8,4 +8,4 @@ webhook:
   port: 9443
 leaderElection:
   leaderElect: true
-  resourceName: f41ddf12.cluster.x-k8s.io
+  resourceName: f41ddf12.rackn.com

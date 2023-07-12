@@ -1,4 +1,4 @@
-domain: cluster.x-k8s.io
+domain: rackn.com
 layout:
 - go.kubebuilder.io/v3
 projectName: cluster-api-provider-rackn
@@ -8,7 +8,7 @@ resources:
     crdVersion: v1
     namespaced: true
   controller: true
-  domain: cluster.x-k8s.io
+  domain: rackn.com
   group: infrastructure
   kind: Machine
   path: github.com/adminturneddevops/cluster-api-provider-rackn/api/v1alpha1

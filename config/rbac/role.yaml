@@ -6,7 +6,7 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - infrastructure.cluster.x-k8s.io
+  - infrastructure.rackn.com
   resources:
   - machines
   verbs:
@@ -18,13 +18,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - infrastructure.cluster.x-k8s.io
+  - infrastructure.rackn.com
   resources:
   - machines/finalizers
   verbs:
   - update
 - apiGroups:
-  - infrastructure.cluster.x-k8s.io
+  - infrastructure.rackn.com
   resources:
   - machines/status
   verbs:
