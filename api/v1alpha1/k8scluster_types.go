@@ -23,17 +23,17 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// MachineSpec defines the desired state of Machine
-type MachineSpec struct {
+// K8sclusterSpec defines the desired state of K8scluster
+type K8sclusterSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of Machine. Edit machine_types.go to remove/update
+	// Foo is an example field of K8scluster. Edit k8scluster_types.go to remove/update
 	Foo string `json:"foo,omitempty"`
 }
 
-// MachineStatus defines the observed state of Machine
-type MachineStatus struct {
+// K8sclusterStatus defines the observed state of K8scluster
+type K8sclusterStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -41,24 +41,24 @@ type MachineStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// Machine is the Schema for the machines API
-type Machine struct {
+// K8scluster is the Schema for the k8sclusters API
+type K8scluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MachineSpec   `json:"spec,omitempty"`
-	Status MachineStatus `json:"status,omitempty"`
+	Spec   K8sclusterSpec   `json:"spec,omitempty"`
+	Status K8sclusterStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// MachineList contains a list of Machine
-type MachineList struct {
+// K8sclusterList contains a list of K8scluster
+type K8sclusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Machine `json:"items"`
+	Items           []K8scluster `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&Machine{}, &MachineList{})
+	SchemeBuilder.Register(&K8scluster{}, &K8sclusterList{})
 }

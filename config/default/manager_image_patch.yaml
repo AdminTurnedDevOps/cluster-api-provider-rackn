@@ -7,5 +7,5 @@ spec:
   template:
     spec:
       containers:
-      - image: gcr.io/k8s-staging-cluster-api-rackn/cluster-api-rackn-controller:dev
+      - image: gcr.io/k8s-staging-cluster-api-rackn/cluster-api-rackn-controller
         name: manager

@@ -1,6 +1,0 @@
-apiVersion: infrastructure.rackn.com/v1alpha1
-kind: Machine
-metadata:
-  name: machine-sample
-spec:
-  # TODO(user): Add fields here
