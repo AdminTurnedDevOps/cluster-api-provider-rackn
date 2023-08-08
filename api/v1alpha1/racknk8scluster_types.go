@@ -18,9 +18,11 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
+const ClusterFinalizer = "k8scluster.infrastructure.cluster.x-k8s.io"
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // RackNk8sclusterSpec defines the desired state of RackNk8scluster
@@ -28,8 +30,9 @@ type RackNk8sclusterSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of RackNk8scluster. Edit racknk8scluster_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Omiting output to empty as the output isn't necassary to the end user
+
+	ControlPlaneEndpoint clusterv1.APIEndpoint `json:"controlPlaneEndpoint,omitempty"`
 }
 
 // RackNk8sclusterStatus defines the observed state of RackNk8scluster

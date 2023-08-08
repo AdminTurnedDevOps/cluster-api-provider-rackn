@@ -18,19 +18,14 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
-const ClusterFinalizer = "k8scluster.infrastructure.cluster.x-k8s.io"
-
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // RackNk8smachineSpec defines the desired state of RackNk8smachine
 type RackNk8smachineSpec struct {
 	// Required field for Cluster API
 	// Omiting output to empty as the output isn't necassary to the end user
-	ControlPlaneEndpoint clusterv1.APIEndpoint `json:"controlPlaneEndpoint,omitempty"`
 
 	ClusterName string `json:"clusterName,omitempty"`
 
