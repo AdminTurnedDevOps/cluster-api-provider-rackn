@@ -18,10 +18,10 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	// clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
+const ClusterFinalizer = "k8scluster.infrastructure.cluster.x-k8s.io"
 
 // K8sclusterSpec defines the desired state of K8scluster
 type K8sclusterSpec struct {
