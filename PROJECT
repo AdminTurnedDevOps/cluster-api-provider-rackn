@@ -10,7 +10,16 @@ resources:
   controller: true
   domain: cluster.x-k8s.io
   group: infrastructure
-  kind: K8scluster
+  kind: RackNk8scluster
+  path: github.com/adminturneddevops/cluster-api-provider-rackn/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: cluster.x-k8s.io
+  group: infrastructure
+  kind: RackNk8smachine
   path: github.com/adminturneddevops/cluster-api-provider-rackn/api/v1alpha1
   version: v1alpha1
 version: "3"

@@ -1,5 +1,5 @@
 # Adds namespace to all resources.
-namespace: caprn-system
+namespace: carprn-system
 
 # Value of this field is prepended to the
 # names of all resources, e.g. a deployment named
@@ -10,7 +10,7 @@ namePrefix: caprn-
 
 # Labels to add to all resources and selectors.
 commonLabels:
- someName: "infrastructure-caprn"
+ cluster.x-k8s.io/provider: infrastructure-caprn
 
 bases:
 - ../crd

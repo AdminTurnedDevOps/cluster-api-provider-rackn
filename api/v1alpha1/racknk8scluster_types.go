@@ -18,22 +18,22 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	// clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
-const ClusterFinalizer = "k8scluster.infrastructure.cluster.x-k8s.io"
+// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
+// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// K8sclusterSpec defines the desired state of K8scluster
-type K8sclusterSpec struct {
+// RackNk8sclusterSpec defines the desired state of RackNk8scluster
+type RackNk8sclusterSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of K8scluster. Edit k8scluster_types.go to remove/update
+	// Foo is an example field of RackNk8scluster. Edit racknk8scluster_types.go to remove/update
 	Foo string `json:"foo,omitempty"`
 }
 
-// K8sclusterStatus defines the observed state of K8scluster
-type K8sclusterStatus struct {
+// RackNk8sclusterStatus defines the observed state of RackNk8scluster
+type RackNk8sclusterStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -41,24 +41,24 @@ type K8sclusterStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// K8scluster is the Schema for the k8sclusters API
-type K8scluster struct {
+// RackNk8scluster is the Schema for the racknk8sclusters API
+type RackNk8scluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   K8sclusterSpec   `json:"spec,omitempty"`
-	Status K8sclusterStatus `json:"status,omitempty"`
+	Spec   RackNk8sclusterSpec   `json:"spec,omitempty"`
+	Status RackNk8sclusterStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// K8sclusterList contains a list of K8scluster
-type K8sclusterList struct {
+// RackNk8sclusterList contains a list of RackNk8scluster
+type RackNk8sclusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []K8scluster `json:"items"`
+	Items           []RackNk8scluster `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&K8scluster{}, &K8sclusterList{})
+	SchemeBuilder.Register(&RackNk8scluster{}, &RackNk8sclusterList{})
 }
