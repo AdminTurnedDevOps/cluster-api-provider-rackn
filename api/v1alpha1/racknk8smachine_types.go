@@ -27,6 +27,8 @@ type RackNk8smachineSpec struct {
 	// Required field for Cluster API
 	// Omiting output to empty as the output isn't necassary to the end user
 
+	ProviderID string `json:"providerID,omitempty"`
+
 	ClusterName string `json:"clusterName,omitempty"`
 
 	PubSSHKey string `json:"pubSSHkey,omitempty"`
@@ -40,6 +42,8 @@ type RackNk8smachineStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	Ready bool `json:"ready"`
+
+	FailureMessage *string `json:"failureMessage,omitempty"`
 }
 
 //+kubebuilder:object:root=true
