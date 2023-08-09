@@ -38,8 +38,6 @@ type RackNk8sclusterSpec struct {
 	// Omiting output to empty as the output isn't necassary to the end user
 
 	ControlPlaneEndpoint clusterv1.APIEndpoint `json:"controlPlaneEndpoint,omitempty"`
-
-	Pool string `json:"pool,omitempty"`
 }
 
 // RackNk8sclusterStatus defines the observed state of RackNk8scluster
