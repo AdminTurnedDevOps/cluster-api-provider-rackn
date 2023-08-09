@@ -18,6 +18,7 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	capierrors "sigs.k8s.io/cluster-api/errors"
 )
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
@@ -44,6 +45,8 @@ type RackNk8smachineStatus struct {
 	Ready bool `json:"ready"`
 
 	FailureMessage *string `json:"failureMessage,omitempty"`
+
+	ErrorReason *capierrors.MachineStatusError `json:"errorReason,omitempty"`
 }
 
 //+kubebuilder:object:root=true
