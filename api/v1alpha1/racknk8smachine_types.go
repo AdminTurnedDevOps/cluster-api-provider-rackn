@@ -39,7 +39,7 @@ type RackNk8smachineSpec struct {
 
 // RackNk8smachineStatus defines the observed state of RackNk8smachine
 type RackNk8smachineStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	// define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
 	Ready bool `json:"ready"`

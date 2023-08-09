@@ -35,13 +35,30 @@ spec:
           spec:
             description: RackNk8sclusterSpec defines the desired state of RackNk8scluster
             properties:
-              foo:
-                description: Foo is an example field of RackNk8scluster. Edit racknk8scluster_types.go
-                  to remove/update
+              controlPlaneEndpoint:
+                description: APIEndpoint represents a reachable Kubernetes API endpoint.
+                properties:
+                  host:
+                    description: The hostname on which the API server is serving.
+                    type: string
+                  port:
+                    description: The port on which the API server is serving.
+                    format: int32
+                    type: integer
+                required:
+                - host
+                - port
+                type: object
+              pool:
                 type: string
             type: object
           status:
             description: RackNk8sclusterStatus defines the observed state of RackNk8scluster
+            properties:
+              ready:
+                type: boolean
+            required:
+            - ready
             type: object
         type: object
     served: true
