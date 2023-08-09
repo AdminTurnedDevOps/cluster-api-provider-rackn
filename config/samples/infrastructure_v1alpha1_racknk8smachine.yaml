@@ -3,4 +3,6 @@ kind: RackNk8smachine
 metadata:
   name: racknk8smachine-sample
 spec:
-  # TODO(user): Add fields here
+  clusterName: ${CLUSTER_NAME}
+  pubSSHKey: ${PUB_SSH_KEY}
+  vmSize: ${VM_SIZE}

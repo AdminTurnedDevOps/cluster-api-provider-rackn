@@ -3,4 +3,4 @@ kind: RackNk8scluster
 metadata:
   name: racknk8scluster-sample
 spec:
-  # TODO(user): Add fields here
+  pool: ${POOL_NAME}
