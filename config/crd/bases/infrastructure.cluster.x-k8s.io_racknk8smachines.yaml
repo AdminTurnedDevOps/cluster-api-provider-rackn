@@ -35,13 +35,24 @@ spec:
           spec:
             description: RackNk8smachineSpec defines the desired state of RackNk8smachine
             properties:
-              foo:
-                description: Foo is an example field of RackNk8smachine. Edit racknk8smachine_types.go
-                  to remove/update
+              clusterName:
+                type: string
+              providerID:
+                type: string
+              pubSSHkey:
+                type: string
+              vmSize:
                 type: string
             type: object
           status:
             description: RackNk8smachineStatus defines the observed state of RackNk8smachine
+            properties:
+              failureMessage:
+                type: string
+              ready:
+                type: boolean
+            required:
+            - ready
             type: object
         type: object
     served: true

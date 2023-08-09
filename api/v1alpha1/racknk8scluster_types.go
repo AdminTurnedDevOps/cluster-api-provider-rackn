@@ -14,6 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//The purpose of the infrastructure cluster is to create any
+//required infrastructure for the cluster but not anything related to individual machines/nodes
+
 package v1alpha1
 
 import (
@@ -21,7 +24,9 @@ import (
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
-const ClusterFinalizer = "k8scluster.infrastructure.cluster.x-k8s.io"
+// Allows cleanup of resources associated with RackNk8sCluster
+// Finalizers are used to mark an object to prevent Kubernetes from deleting it until the finalizer is removed
+const ClusterFinalizer = "racknk8scluster.infrastructure.cluster.x-k8s.io"
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
