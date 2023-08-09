@@ -21,6 +21,13 @@ import (
 	capierrors "sigs.k8s.io/cluster-api/errors"
 )
 
+const (
+	// MachineFinalizer allows ReconcileRackNMachine to clean up RackN resources associated with OpenStackMachine before
+	// removing it from the apiserver.
+
+	MachineFinalizer = "racknk8smachine.infrastructure.cluster.x-k8s.io"
+)
+
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // RackNk8smachineSpec defines the desired state of RackNk8smachine
@@ -29,6 +36,8 @@ type RackNk8smachineSpec struct {
 	// Omiting output to empty as the output isn't necassary to the end user
 
 	ProviderID string `json:"providerID,omitempty"`
+
+	Pool string `json:"pool,omitempty"`
 
 	ClusterName string `json:"clusterName,omitempty"`
 
