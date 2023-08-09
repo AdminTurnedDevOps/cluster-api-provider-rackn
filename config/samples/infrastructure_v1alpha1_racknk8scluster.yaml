@@ -3,4 +3,6 @@ kind: RackNk8scluster
 metadata:
   name: racknk8scluster-sample
 spec:
-  pool: ${POOL_NAME}
+  controlPlaneEndpoint:
+    host: ${CONTROL_PLANE_LB}
+    port: 6443
