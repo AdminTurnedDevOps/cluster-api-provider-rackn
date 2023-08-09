@@ -46,7 +46,7 @@ type RackNk8sclusterReconciler struct {
 //
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.11.2/pkg/reconcile
-func (r *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+func (rcr *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
@@ -55,8 +55,8 @@ func (r *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Requ
 }
 
 // SetupWithManager sets up the controller with the Manager.
-func (r *RackNk8sclusterReconciler) SetupWithManager(mgr ctrl.Manager) error {
+func (rcr *RackNk8sclusterReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&infrastructurev1alpha1.RackNk8scluster{}).
-		Complete(r)
+		Complete(rcr)
 }
