@@ -119,46 +119,30 @@ func (rcr *RackNk8sclusterReconciler) newReconcileContext(ctx context.Context, n
 	return crc, nil
 }
 
-// const (
-// 	// HardwareOwnerNameLabel is a label set by either CAPT controllers or Tinkerbell controller to indicate
-// 	// that given hardware takes part of at least one workflow.
-// 	HardwareOwnerNameLabel = "v1alpha1.tinkerbell.org/ownerName"
+const (
+	// HardwareOwnerNameLabel is a label set by either CAPT controllers or Tinkerbell controller to indicate
+	// that given hardware takes part of at least one workflow.
+	HardwareOwnerNameLabel = "v1alpha1.tinkerbell.org/ownerName"
 
-// 	// HardwareOwnerNamespaceLabel is a label set by either CAPT controllers or Tinkerbell controller to indicate
-// 	// that given hardware takes part of at least one workflow.
-// 	HardwareOwnerNamespaceLabel = "v1alpha1.tinkerbell.org/ownerNamespace"
+	// HardwareOwnerNamespaceLabel is a label set by either CAPT controllers or Tinkerbell controller to indicate
+	// that given hardware takes part of at least one workflow.
+	HardwareOwnerNamespaceLabel = "v1alpha1.tinkerbell.org/ownerNamespace"
 
-// 	// ClusterNameLabel is used to mark Hardware as assigned controlplane machine.
-// 	ClusterNameLabel = "v1alpha1.tinkerbell.org/clusterName"
+	// ClusterNameLabel is used to mark Hardware as assigned controlplane machine.
+	ClusterNameLabel = "v1alpha1.tinkerbell.org/clusterName"
 
-// 	// ClusterNamespaceLabel is used to mark in which Namespace hardware is used.
-// 	ClusterNamespaceLabel = "v1alpha1.tinkerbell.org/clusterNamespace"
+	// ClusterNamespaceLabel is used to mark in which Namespace hardware is used.
+	ClusterNamespaceLabel = "v1alpha1.tinkerbell.org/clusterNamespace"
 
-// 	// KubernetesAPIPort is a port used by Tinkerbell clusters for Kubernetes API.
-// 	KubernetesAPIPort = 6443
-// )
+	// KubernetesAPIPort is a port used by clusters for Kubernetes API.
+	KubernetesAPIPort = 6443
+)
 
-// var (
-// 	// ErrNoHardwareAvailable is the error returned when there is no hardware available for provisioning.
-// 	ErrNoHardwareAvailable = fmt.Errorf("no hardware available")
-// 	// ErrHardwareIsNil is the error returned when the given hardware resource is nil.
-// 	ErrHardwareIsNil = fmt.Errorf("given Hardware object is nil")
-// 	// ErrHardwareMissingInterfaces is the error returned when the referenced hardware does not have any
-// 	// network interfaces defined.
-// 	ErrHardwareMissingInterfaces = fmt.Errorf("hardware has no interfaces defined")
-// 	// ErrHardwareFirstInterfaceNotDHCP is the error returned when the referenced hardware does not have it's
-// 	// first network interface configured for DHCP.
-// 	ErrHardwareFirstInterfaceNotDHCP = fmt.Errorf("hardware's first interface has no DHCP address defined")
-// 	// ErrHardwareFirstInterfaceDHCPMissingIP is the error returned when the referenced hardware does not have a
-// 	// DHCP IP address assigned for it's first interface.
-// 	ErrHardwareFirstInterfaceDHCPMissingIP = fmt.Errorf("hardware's first interface has no DHCP IP address defined")
-// 	// ErrClusterNotReady is returned when trying to reconcile prior to the Cluster resource being ready.
-// 	ErrClusterNotReady = fmt.Errorf("cluster resource not ready")
-// 	// ErrControlPlaneEndpointNotSet is returned when trying to reconcile when the ControlPlane Endpoint is not defined.
-// 	ErrControlPlaneEndpointNotSet = fmt.Errorf("controlplane endpoint is not set")
-// )
+// Need to input a function around RackN resource checking.
+// Similar to the below example of how TinkerBell is checking hardware resources
+// The /pools/{id}/status to return the status of machines in the pool could be a good one here.
 
-// func hardwareIP(hardware *rackn.Hardware) (string, error) {
+// func hardwareIP(hardware *tinkerbell.Hardware) (string, error) {
 // 	if hardware == nil {
 // 		return "", ErrHardwareIsNil
 // 	}
@@ -192,7 +176,7 @@ func (crc *clusterReconcileContext) controlPlaneEndpoint() (clusterv1.APIEndpoin
 		return crc.cluster.Spec.ControlPlaneEndpoint, nil
 	// If the cluster isn't ready
 	case crc.cluster == nil:
-		return clusterv1.APIEndpoint{}, log.Error("Cluster Not Ready")
+		return clusterv1.APIEndpoint{}, log.Error("Cluster Resource Not Ready")
 	}
 
 	endpoint := clusterv1.APIEndpoint{
@@ -213,7 +197,6 @@ func (crc *clusterReconcileContext) controlPlaneEndpoint() (clusterv1.APIEndpoin
 	}
 
 	if endpoint.Port == 0 {
-		var KubernetesAPIPort int32 = 6443
 		endpoint.Port = KubernetesAPIPort
 	}
 
