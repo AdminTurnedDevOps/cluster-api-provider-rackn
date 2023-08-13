@@ -129,12 +129,12 @@ func Pools(p *rackn.Pool) (string, error) {
 		return "Pools API Not Found", nil
 	}
 
-	if p.Validate() == nil {
+	if p.Validate == nil {
 		log.Fatalln("Validation Not Complete For Pool")
 		return "Validation Not Complete For Pool", nil
 	}
 
-	return p.id
+	return p.Key(), fmt.Errorf("DRP Key Not Found")
 }
 
 func (crc *clusterReconcileContext) controlPlaneEndpoint() (clusterv1.APIEndpoint, error) {
@@ -239,7 +239,8 @@ func (tcr *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Re
 		return ctrl.Result{}, nil
 	}
 
-	return ctrl.Result{}, crc.reconcile()
+	// `err` return here ensures that the Reconcile() function will be called again
+	return ctrl.Result{}, err
 }
 
 // SetupWithManager configures reconciler with a given manager.
