@@ -114,19 +114,6 @@ func (rcr *RackNk8sclusterReconciler) newReconcileContext(ctx context.Context, n
 }
 
 const (
-	// HardwareOwnerNameLabel is a label set by either CAPT controllers or Tinkerbell controller to indicate
-	// that given hardware takes part of at least one workflow.
-	HardwareOwnerNameLabel = "v1alpha1.tinkerbell.org/ownerName"
-
-	// HardwareOwnerNamespaceLabel is a label set by either CAPT controllers or Tinkerbell controller to indicate
-	// that given hardware takes part of at least one workflow.
-	HardwareOwnerNamespaceLabel = "v1alpha1.tinkerbell.org/ownerNamespace"
-
-	// ClusterNameLabel is used to mark Hardware as assigned controlplane machine.
-	ClusterNameLabel = "v1alpha1.tinkerbell.org/clusterName"
-
-	// ClusterNamespaceLabel is used to mark in which Namespace hardware is used.
-	ClusterNamespaceLabel = "v1alpha1.tinkerbell.org/clusterNamespace"
 
 	// KubernetesAPIPort is a port used by clusters for Kubernetes API.
 	KubernetesAPIPort = 6443
