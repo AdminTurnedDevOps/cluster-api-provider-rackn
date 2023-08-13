@@ -19,6 +19,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/go-logr/logr"
 	"github.com/opentracing/opentracing-go/log"
@@ -36,7 +37,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller"
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 
-	// rackn ""
+	rackn "gitlab.com/rackn/provision/v4/models"
 
 	infrastructurev1alpha1 "github.com/adminturneddevops/cluster-api-provider-rackn/api/v1alpha1"
 )
@@ -114,7 +115,6 @@ func (rcr *RackNk8sclusterReconciler) newReconcileContext(ctx context.Context, n
 }
 
 const (
-
 	// KubernetesAPIPort is a port used by clusters for Kubernetes API.
 	KubernetesAPIPort = 6443
 )
@@ -123,29 +123,19 @@ const (
 // Similar to the below example of how TinkerBell is checking hardware resources
 // The /pools/{id}/status to return the status of machines in the pool could be a good one here.
 
-// func hardwareIP(hardware *tinkerbell.Hardware) (string, error) {
-// 	if hardware == nil {
-// 		return "", ErrHardwareIsNil
-// 	}
+func Pools(p *rackn.Pool) (string, error) {
+	if p == nil {
+		log.Fatalln("Pools API Not Found")
+		return "Pools API Not Found", nil
+	}
 
-// 	if len(hardware.Spec.Interfaces) == 0 {
-// 		return "", ErrHardwareMissingInterfaces
-// 	}
+	if p.Validate() == nil {
+		log.Fatalln("Validation Not Complete For Pool")
+		return "Validation Not Complete For Pool", nil
+	}
 
-// 	if hardware.Spec.Interfaces[0].DHCP == nil {
-// 		return "", ErrHardwareFirstInterfaceNotDHCP
-// 	}
-
-// 	if hardware.Spec.Interfaces[0].DHCP.IP == nil {
-// 		return "", ErrHardwareFirstInterfaceDHCPMissingIP
-// 	}
-
-// 	if hardware.Spec.Interfaces[0].DHCP.IP.Address == "" {
-// 		return "", ErrHardwareFirstInterfaceDHCPMissingIP
-// 	}
-
-// 	return hardware.Spec.Interfaces[0].DHCP.IP.Address, nil
-// }
+	return p.id
+}
 
 func (crc *clusterReconcileContext) controlPlaneEndpoint() (clusterv1.APIEndpoint, error) {
 	switch {
