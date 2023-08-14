@@ -78,13 +78,16 @@ func main() {
 		os.Exit(1)
 	}
 
+	ctx := ctrl.SetupSignalHandler()
+
 	if err = (&controllers.RackNk8sclusterReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
-	}).SetupWithManager(mgr); err != nil {
+	}).SetupWithManager(ctx, mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "RackNk8scluster")
 		os.Exit(1)
 	}
+
 	if err = (&controllers.RackNk8smachineReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),

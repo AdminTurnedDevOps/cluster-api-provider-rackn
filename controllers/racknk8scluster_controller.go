@@ -207,8 +207,8 @@ func (crc *clusterReconcileContext) reconcileDelete() error {
 // +kubebuilder:rbac:groups=cluster.x-k8s.io,resources=racknk8sclusters;clusters/status,verbs=get;list;watch
 
 // Reconcile ensures state of RackN clusters.
-func (tcr *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	crc, err := tcr.newReconcileContext(ctx, req.NamespacedName)
+func (rcr *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+	crc, err := rcr.newReconcileContext(ctx, req.NamespacedName)
 	if err != nil {
 		return ctrl.Result{}, fmt.Errorf("creating reconciliation context: %w", err)
 	}
@@ -244,7 +244,7 @@ func (tcr *RackNk8sclusterReconciler) Reconcile(ctx context.Context, req ctrl.Re
 }
 
 // SetupWithManager configures reconciler with a given manager.
-func (tcr *RackNk8sclusterReconciler) SetupWithManager(
+func (rcr *RackNk8sclusterReconciler) SetupWithManager(
 	ctx context.Context,
 	mgr ctrl.Manager,
 	options controller.Options,
@@ -261,7 +261,7 @@ func (tcr *RackNk8sclusterReconciler) SetupWithManager(
 	builder := ctrl.NewControllerManagedBy(mgr).
 		WithOptions(options).
 		For(&infrastructurev1alpha1.RackNk8scluster{}).
-		WithEventFilter(predicates.ResourceNotPausedAndHasFilterLabel(log, tcr.WatchFilterValue)).
+		WithEventFilter(predicates.ResourceNotPausedAndHasFilterLabel(log, rcr.WatchFilterValue)).
 		WithEventFilter(predicates.ResourceIsNotExternallyManaged(log)).
 		Watches(
 			&clusterv1.Cluster{},
@@ -269,7 +269,7 @@ func (tcr *RackNk8sclusterReconciler) SetupWithManager(
 			builder.WithPredicates(predicates.ClusterUnpaused(log)),
 		)
 
-	if err := builder.Complete(tcr); err != nil {
+	if err := builder.Complete(rcr); err != nil {
 		return fmt.Errorf("failed to configure controller: %w", err)
 	}
 
