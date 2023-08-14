@@ -22,7 +22,6 @@ import (
 	"log"
 
 	"github.com/go-logr/logr"
-	"github.com/opentracing/opentracing-go/log"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
@@ -147,7 +146,7 @@ func (crc *clusterReconcileContext) controlPlaneEndpoint() (clusterv1.APIEndpoin
 		return crc.cluster.Spec.ControlPlaneEndpoint, nil
 	// If the cluster isn't ready
 	case crc.cluster == nil:
-		return clusterv1.APIEndpoint{}, log.Error("Cluster Resource Not Ready")
+		return clusterv1.APIEndpoint{}, fmt.Errorf("cluster resource not ready")
 	}
 
 	endpoint := clusterv1.APIEndpoint{
@@ -164,7 +163,7 @@ func (crc *clusterReconcileContext) controlPlaneEndpoint() (clusterv1.APIEndpoin
 	}
 
 	if endpoint.Host == "" {
-		return endpoint, log.Error("Control Plane Endpoint Not Set")
+		return endpoint, fmt.Errorf("control plane endpoint not set")
 	}
 
 	if endpoint.Port == 0 {
