@@ -49,8 +49,6 @@ spec:
                 - host
                 - port
                 type: object
-              pool:
-                type: string
             type: object
           status:
             description: RackNk8sclusterStatus defines the observed state of RackNk8scluster
